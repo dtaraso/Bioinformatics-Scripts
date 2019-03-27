@@ -1,6 +1,8 @@
 import re
+import sys
 
-file_name = input("Enter file_name: ")
+file_name = sys.argv[1]
+branch_length_factor = float(sys.argv[2])
 with open(file_name) as fp:
     lines = fp.read().strip()
     fp.close()
@@ -15,7 +17,7 @@ for i in re.split('[:,)]',lines):
 		continue
 
 for i in branch_lengths:
-	lines = lines.replace(str(i), str(i*2))
+	lines = lines.replace(str(i), str(i*branch_length_factor))
 
 fp = open(file_name,'w')
 fp.write(lines)
